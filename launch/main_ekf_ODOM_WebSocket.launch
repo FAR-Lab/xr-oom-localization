@@ -11,7 +11,7 @@
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
   <rosparam command="load" file="$(find vroom_localization)/params/ekf_IMU_ODOM.yaml" />
   </node>
-  <include file="$(find rosbridge_server)/launch/rosbridge_tcp.launch" >
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
      <arg name="bson_only_mode" value="True"/>
   </include>
 
