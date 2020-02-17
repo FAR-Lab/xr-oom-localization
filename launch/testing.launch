@@ -1,0 +1,30 @@
+<launch>
+  <!-- Start the MTI IMU -->
+  <node  name="xsens_mti_node" pkg="xsens_mti_driver" type="xsens_mti_node" output="screen">
+      <rosparam command="load" file="$(find vroom_localization)/params/xsens_mti_node.yaml" />
+  </node>
+  <!-- Start the transform nodes -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="xsens_IMU_frame" args="0 0 0 0 0 0 1 /base_link  /xsens" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="zed_IMU_frame" args="58.1 0 62.4 0 0 0 1 /base_link /zed_imu_link" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="can_frame" args="-144.78 0 -25 0 0 0 1 /base_link /canbuslink" />
+
+
+  <node pkg="cantoros" name="CanBusNode" type="ReadingCanPythonTest.py" />
+
+  <!-- Start the ekf -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+  <rosparam command="load" file="$(find vroom_localization)/params/ekf_IMU_ODOM.yaml" />
+  </node>
+
+  <!-- Start the gps -->
+  <node pkg="nmea_navsat_driver" type="nmea_serial_driver" name="navsat" respawn="true">
+    <param name="port" value="/dev/ttyUSB0"/>
+    <param name="baud" value="9600"/>
+  </node>
+
+
+ <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
+     <arg name="bson_only_mode" value="True"/>
+  </include>
+
+</launch>
