@@ -1,0 +1,6 @@
+<launch>
+<group>
+	<machine name="rosodomnode" address="rosodomnode.local" user="farlab" env-loader="/opt/ros/melodic/env.sh" default="true" />
+		<include file="$(find zed_wrapper)/launch/zedm.launch" />
+</group>
+</launch>

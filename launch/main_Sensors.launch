@@ -1,0 +1,11 @@
+<launch>
+  <!-- Start the MTI IMU -->
+  <node  name="xsens_mti_node" pkg="xsens_mti_driver" type="xsens_mti_node" output="screen">
+      <rosparam command="load" file="$(find vroom_localization)/params/xsens_mti_node.yaml" />
+  </node>
+  <!-- Start the transform nodes -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="xsens_IMU_frame" args="0 0 0 0 0 0 1 /base_link  /xsens" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="can_frame" args="-144.78 0 -25 0 0 0 1 /base_link /canbuslink" />
+  <node pkg="cantoros" name="CanBusNode" type="cantoros_main.py"/>
+
+</launch>

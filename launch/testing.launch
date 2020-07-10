@@ -13,14 +13,14 @@
 
   <!-- Start the ekf -->
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
-  <rosparam command="load" file="$(find vroom_localization)/params/ekf_IMU_ODOM.yaml" />
+  <rosparam command="load" file="$(find vroom_localization)/params/testing.yaml" />
   </node>
 
   <!-- Start the gps -->
-  <node pkg="nmea_navsat_driver" type="nmea_serial_driver" name="navsat" respawn="true">
+<!--   <node pkg="nmea_navsat_driver" type="nmea_serial_driver" name="navsat" respawn="true">
     <param name="port" value="/dev/ttyUSB0"/>
     <param name="baud" value="9600"/>
-  </node>
+  </node> -->
 
 
  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >

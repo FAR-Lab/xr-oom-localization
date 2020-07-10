@@ -1,0 +1,10 @@
+<launch>
+  <node name="talker" pkg="rospy_tutorials" type="talker" />
+ 
+  <group>
+            <machine name="rosodomnode" address="rosodomnode.local" user="farlab" env-loader="/home/farlab/catkin_ws/devel/env.sh" default="true" />
+            <include file="$(find zed_wrapper)/launch/zedm.launch"/>
+  </group>
+
+</launch>
+

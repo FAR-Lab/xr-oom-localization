@@ -1,0 +1,15 @@
+<launch>
+  <!-- Start the MTI IMU -->
+  <node  name="xsens_mti_node" pkg="xsens_mti_driver" type="xsens_mti_node" output="screen">
+      <rosparam command="load" file="$(find vroom_localization)/params/xsens_mti_node.yaml" />
+  </node>
+  <!-- Start the transform nodes -->
+
+  <node pkg="cantoros" name="CanBusNode" type="cantoros_main.py"/>
+
+
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
+     <arg name="bson_only_mode" value="True"/>
+  </include>
+
+</launch>
