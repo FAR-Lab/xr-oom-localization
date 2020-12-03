@@ -1,0 +1,67 @@
+<launch>
+  <!-- Start the MTI IMU -->
+  <node  name="xsens_mti_node" pkg="xsens_mti_driver" type="xsens_mti_node" output="screen">
+      <rosparam command="load" file="$(find vroom_localization)/params/xsens_mti_node.yaml" />
+  </node>
+
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
+     <arg name="bson_only_mode" value="True"/>
+  </include>
+
+<!--  <include file="$(find ouster_ros)/os1.launch" >-->
+  <!--   <arg name="os1_hostname" value="os1-991832000948.local"/>-->
+  <!--   <arg name="os1_udp_dest" value="192.168.1.2"/>-->
+  <!--   <arg name="lidar_mode" value="1024x20"/>-->
+     <!--<arg name="tf_prefix" value=""/> -->
+<!--  </include>-->
+
+  <arg name="svo_file"             default="" /> <!-- <arg name="svo_file" default="path/to/svo/file.svo"> -->
+  <arg name="stream"               default="" /> <!-- <arg name="stream" default="<ip_address>:<port>"> -->
+
+  <arg name="node_name"            default="zed_node" />
+  <arg name="camera_model"         default="zedm" /> <!-- 'zed' or 'zedm' -->
+  <arg name="publish_urdf"         default="true" />
+
+  <arg name="camera_name"          default="zedm" />
+
+  <arg name="base_frame"           default="base_link" />
+
+  <arg name="cam_pos_x"             default="0.0" /> <!-- Position respect to base frame (i.e. "base_link) -->
+  <arg name="cam_pos_y"             default="0.0" /> <!-- Position respect to base frame (i.e. "base_link) -->
+  <arg name="cam_pos_z"             default="0.0" /> <!-- Position respect to base frame (i.e. "base_link) -->
+  <arg name="cam_roll"              default="0.0" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
+  <arg name="cam_pitch"             default="0.0" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
+  <arg name="cam_yaw"               default="0.0" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
+
+  <group ns="$(arg camera_name)">
+      <include file="$(find zed_wrapper)/launch/include/zed_camera.launch.xml">
+          <arg name="camera_name"         value="$(arg camera_name)" />
+          <arg name="svo_file"            value="$(arg svo_file)" />
+          <arg name="stream"              value="$(arg stream)" />
+          <arg name="node_name"           value="$(arg node_name)" />
+          <arg name="camera_model"        value="$(arg camera_model)" />
+          <arg name="base_frame"          value="$(arg base_frame)" />
+          <arg name="publish_urdf"        value="$(arg publish_urdf)" />
+          <arg name="cam_pos_x"           value="$(arg cam_pos_x)" />
+          <arg name="cam_pos_y"           value="$(arg cam_pos_y)" />
+          <arg name="cam_pos_z"           value="$(arg cam_pos_z)" />
+          <arg name="cam_roll"            value="$(arg cam_roll)" />
+          <arg name="cam_pitch"           value="$(arg cam_pitch)" />
+          <arg name="cam_yaw"             value="$(arg cam_yaw)" />
+      </include>
+  </group>
+
+
+
+
+
+
+
+
+  <!-- Start the transform nodes -->
+<!--  <node pkg="tf2_ros" type="static_transform_publisher" name="os1_sensor_frame" args="-1.5 0 -0.25 0 0 0 1 /base_link  /os1_sensor" />-->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="xsens_IMU_frame" args="0 0 0 0 0 0 1 /base_link  /xsens" />
+<!--   <node pkg="tf2_ros" type="static_transform_publisher" name="can_frame" args="-1.4 0 -0.25 0 0 0 1 /base_link /canbuslink" />-->
+<!--   <node pkg="cantoros" name="CanBusNode" type="cantoros_main.py"/>-->
+
+</launch>

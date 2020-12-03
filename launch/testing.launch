@@ -5,8 +5,8 @@
   </node>
   <!-- Start the transform nodes -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="xsens_IMU_frame" args="0 0 0 0 0 0 1 /base_link  /xsens" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="zed_IMU_frame" args="58.1 0 62.4 0 0 0 1 /base_link /zed_imu_link" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="can_frame" args="-144.78 0 -25 0 0 0 1 /base_link /canbuslink" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="zed_IMU_frame" args="0.581 0 0.624 0 0 0 1 /base_link /zed_imu_link" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="can_frame" args="-1.4478 0 -0.25 0 0 0 1 /base_link /canbuslink" />
 
 
   <node pkg="cantoros" name="CanBusNode" type="ReadingCanPythonTest.py" />

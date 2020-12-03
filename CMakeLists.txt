@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
   nmea_navsat_driver
   robot_localization
   roscpp
-  xsens_driver
   rospy
   std_msgs
 )
@@ -108,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES vroom_localization
-#  CATKIN_DEPENDS nmea_navsat_driver robot_localization roscpp xsens_driver rospy std_msgs
+#  CATKIN_DEPENDS nmea_navsat_driver robot_localization roscpp rospy std_msgs
 #  DEPENDS system_lib
 )
 

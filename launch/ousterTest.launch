@@ -1,0 +1,10 @@
+<launch>
+  <!-- Start the MTI IMU -->
+<!-- <arg name="os1_udp_dest" value="$(ifconfig eth0 | grep 'inet' | cut -d: -f2| awk '{print $2}')"/> -->
+  <include file="$(find ouster_ros)/os1.launch" >
+     <arg name="os1_hostname" value="os1-991832000948.local"/>
+     <arg name="os1_udp_dest" value="192.168.0.12"/>
+     <arg name="lidar_mode" value="512x20"/>
+  </include>
+
+</launch>
