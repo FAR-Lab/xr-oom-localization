@@ -8,6 +8,7 @@ from tcp_endpoint.RosSubscriber import RosSubscriber
 from tcp_endpoint.RosService import RosService
 
 from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import Pose
 from nav_msgs.msg import Odometry
 from vroom_localization.msg import gazetracking
 from vroom_localization.msg import hmd
@@ -21,8 +22,8 @@ def main():
     tcp_server.source_destination_dict = {
         'pose': RosSubscriber('/zedm/zed_node/pose', PoseStamped, tcp_server),
 	'can': RosSubscriber('/odomCAN', Odometry, tcp_server),
-        'eyes': RosPublisher('/eyes', gazetracking, queue_size=10),
- 	'hmd': RosPublisher('/hmd', hmd, queue_size=10)
+        'gaze': RosPublisher('/gaze', gazetracking, queue_size=10),
+ 	'hmd': RosPublisher('/hmd', Pose, queue_size=10)
     }
     #'pose': RosSubscriber('/zedm/zed_node/pose', Pose, tcp_server)
 
