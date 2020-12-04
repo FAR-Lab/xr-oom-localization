@@ -3,15 +3,13 @@
 
 
   <!-- Start the MTI IMU -->
-<node pkg="vroom_localization" name="tcp_server" type="server_endpoint.py" output="screen">
-</node>
+ <node pkg="vroom_localization" name="tcp_server" type="server_endpoint.py" output="screen">
+ </node>
 
-<include file="$(find zed_wrapper)/launch/zedm.launch" />
-
-
+ <include file="$(find zed_wrapper)/launch/zedm.launch" />
 
 
-  <!-- Start the transform nodes -->
-  <!--  <node pkg="cantoros" name="CanBusNode" type="cantoros_main.py"/>  -->
+ <node pkg="cantoros" name="CanBusNode" type="cantoros_main.py"/>
+
 
 </launch>

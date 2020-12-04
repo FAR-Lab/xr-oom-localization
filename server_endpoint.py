@@ -8,6 +8,9 @@ from tcp_endpoint.RosSubscriber import RosSubscriber
 from tcp_endpoint.RosService import RosService
 
 from geometry_msgs.msg import PoseStamped
+from nav_msgs.msg import Odometry
+from vroom_localization.msg import gazetracking
+from vroom_localization.msg import hmd
 
 def main():
     ros_node_name = rospy.get_param("/TCP_NODE_NAME", 'TCPServer')
@@ -16,7 +19,10 @@ def main():
     tcp_server = TCPServer(ros_node_name, buffer_size, connections)
 
     tcp_server.source_destination_dict = {
-        'pose': RosSubscriber('/zedm/zed_node/pose', PoseStamped, tcp_server)
+        'pose': RosSubscriber('/zedm/zed_node/pose', PoseStamped, tcp_server),
+	'can': RosSubscriber('/odomCAN', Odometry, tcp_server),
+        'eyes': RosPublisher('/eyes', gazetracking, queue_size=10),
+ 	'hmd': RosPublisher('/hmd', hmd, queue_size=10)
     }
     #'pose': RosSubscriber('/zedm/zed_node/pose', Pose, tcp_server)
 
