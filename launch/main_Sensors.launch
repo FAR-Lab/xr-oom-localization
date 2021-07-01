@@ -12,6 +12,7 @@
      <arg name="os1_hostname" value="os1-991832000948.local"/>
      <arg name="os1_udp_dest" value="192.168.1.2"/>
      <arg name="lidar_mode" value="1024x20"/>
+     <arg name="timestamp_mode" value="TIME_FROM_PTP_1588"/>
      <!--<arg name="tf_prefix" value=""/> -->
   </include>
 
