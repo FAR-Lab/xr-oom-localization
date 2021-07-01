@@ -29,6 +29,7 @@ def main():
 
     rospy.init_node(ros_node_name, anonymous=True)
     tcp_server.start()
+    print("Yes. hello?")
     rospy.spin()
 
 
