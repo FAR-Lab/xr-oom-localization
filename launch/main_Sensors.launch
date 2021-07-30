@@ -4,13 +4,13 @@
       <rosparam command="load" file="$(find vroom_localization)/params/xsens_mti_node.yaml" />
   </node>
 
-  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
-     <arg name="bson_only_mode" value="True"/>
-  </include>
+ <!--  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >-->
+   <!--   <arg name="bson_only_mode" value="True"/>-->
+ <!--  </include>-->
 
   <include file="$(find ouster_ros)/os1.launch" >
-     <arg name="os1_hostname" value="os1-991832000948.local"/>
-     <arg name="os1_udp_dest" value="192.168.1.2"/>
+     <arg name="os1_hostname" value="os-122109000688.local"/>
+     <arg name="os1_udp_dest" value="192.168.1.26"/>
      <arg name="lidar_mode" value="1024x20"/>
      <arg name="timestamp_mode" value="TIME_FROM_PTP_1588"/>
      <!--<arg name="tf_prefix" value=""/> -->
